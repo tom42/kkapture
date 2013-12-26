@@ -32,6 +32,7 @@
 #define IDC_EXTRASCREENWIDTH            1031
 #define IDC_EXTRASCREENHEIGHT           1032
 #define IDC_EXTRASCREENX                1033
+#define IDC_CAPTURECONSOLE              1034
 
 // Next default values for new objects
 // 
