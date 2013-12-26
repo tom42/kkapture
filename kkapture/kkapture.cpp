@@ -110,6 +110,7 @@ static void LoadSettingsFromRegistry()
   Params.FrameTimeout = RegQueryDWord(hk,_T("FrameTimeout"),500);
   Params.UseEncoderThread = RegQueryDWord(hk,_T("UseEncoderThread"),0);
   Params.EnableGDICapture = RegQueryDWord(hk,_T("EnableGDICapture"),0);
+  Params.EnableConsoleCapture = RegQueryDWord(hk,_T("EnableConsoleCapture"),0);
   Params.FrequentTimerCheck = RegQueryDWord(hk,_T("FrequentTimerCheck"),1);
   Params.VirtualFramebuffer = RegQueryDWord(hk,_T("VirtualFramebuffer"),0);
   Params.ExtraScreenMode = FALSE;  // don't store that in the registry
@@ -137,6 +138,8 @@ static void SaveSettingsToRegistry()
     RegSetDWord(hk,_T("FirstFrameTimeout"),Params.FirstFrameTimeout);
     RegSetDWord(hk,_T("FrameTimeout"),Params.FrameTimeout);
     RegSetDWord(hk,_T("UseEncoderThread"),Params.UseEncoderThread);
+    RegSetDWord(hk,_T("EnableGDICapture"),Params.EnableGDICapture);
+    RegSetDWord(hk,_T("EnableConsoleCapture"),Params.EnableConsoleCapture);
     RegSetDWord(hk,_T("FrequentTimerCheck"),Params.FrequentTimerCheck);
     RegSetDWord(hk,_T("VirtualFramebuffer"),Params.VirtualFramebuffer);
     RegSetDWord(hk,_T("ExtraScreenWidth"),Params.ExtraScreenWidth);
@@ -312,6 +315,7 @@ static INT_PTR CALLBACK MainDialogProc(HWND hWndDlg,UINT uMsg,WPARAM wParam,LPAR
       CheckDlgButton(hWndDlg,IDC_SOUNDSYS,Params.SoundsysInterception ? BST_CHECKED : BST_UNCHECKED);
       CheckDlgButton(hWndDlg,IDC_ENCODERTHREAD,Params.UseEncoderThread ? BST_CHECKED : BST_UNCHECKED);
       CheckDlgButton(hWndDlg,IDC_CAPTUREGDI,Params.EnableGDICapture ? BST_CHECKED : BST_UNCHECKED);
+      CheckDlgButton(hWndDlg,IDC_CAPTURECONSOLE,Params.EnableConsoleCapture ? BST_CHECKED : BST_UNCHECKED);
       CheckDlgButton(hWndDlg,IDC_VIRTFRAMEBUF,Params.VirtualFramebuffer ? BST_CHECKED : BST_UNCHECKED);
 
       CheckDlgButton(hWndDlg,IDC_EXTRASCREENMODE,Params.ExtraScreenMode ? BST_CHECKED : BST_UNCHECKED);
@@ -408,6 +412,7 @@ static INT_PTR CALLBACK MainDialogProc(HWND hWndDlg,UINT uMsg,WPARAM wParam,LPAR
         Params.PowerDownAfterwards = IsDlgButtonChecked(hWndDlg,IDC_POWERDOWN) == BST_CHECKED;
         Params.UseEncoderThread = IsDlgButtonChecked(hWndDlg,IDC_ENCODERTHREAD) == BST_CHECKED;
         Params.EnableGDICapture = IsDlgButtonChecked(hWndDlg,IDC_CAPTUREGDI) == BST_CHECKED;
+        Params.EnableConsoleCapture = IsDlgButtonChecked(hWndDlg,IDC_CAPTURECONSOLE) == BST_CHECKED;
         Params.VirtualFramebuffer = IsDlgButtonChecked(hWndDlg,IDC_VIRTFRAMEBUF) == BST_CHECKED;
         Params.ExtraScreenMode = IsDlgButtonChecked(hWndDlg,IDC_EXTRASCREENMODE) == BST_CHECKED;
         Params.ExtraScreenWidth = atoi(extraScreenWidthStr);

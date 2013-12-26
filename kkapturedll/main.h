@@ -37,7 +37,7 @@ extern bool exitNextFrame;
 extern void *hModule;
 
 // parameter block submitted by main app
-static const int PARAMVERSION = 6;
+static const int PARAMVERSION = 7;
 
 enum EncoderType
 {
@@ -73,6 +73,7 @@ struct ParameterBlock
   BOOL PowerDownAfterwards;
   BOOL UseEncoderThread;
   BOOL EnableGDICapture;
+  BOOL EnableConsoleCapture;
   BOOL FrequentTimerCheck;
   BOOL VirtualFramebuffer;
 
