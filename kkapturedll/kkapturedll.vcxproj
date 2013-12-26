@@ -121,6 +121,7 @@
     <ClCompile Include="timing.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="video.cpp" />
+    <ClCompile Include="video_console.cpp" />
     <ClCompile Include="video_direct3d10.cpp" />
     <ClCompile Include="video_direct3d8.cpp" />
     <ClCompile Include="video_direct3d9.cpp" />

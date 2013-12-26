@@ -550,6 +550,7 @@ void initVideo()
   initVideo_Direct3D10();
   initVideo_DirectDraw();
   initVideo_GDI();
+  initVideo_Console();
 }
 
 void doneVideo()

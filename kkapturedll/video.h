@@ -49,6 +49,7 @@ void initVideo_Direct3D9();
 void initVideo_Direct3D10();
 void initVideo_DirectDraw();
 void initVideo_GDI();
+void initVideo_Console();
 
 // helpers
 void setCaptureResolution(int width,int height);

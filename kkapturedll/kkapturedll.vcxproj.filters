@@ -89,6 +89,9 @@
     <ClCompile Include="disasm-lib\misc.c">
       <Filter>tdisasm</Filter>
     </ClCompile>
+    <ClCompile Include="video_console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio_resample.h">
