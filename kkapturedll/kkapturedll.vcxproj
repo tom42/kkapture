@@ -110,6 +110,7 @@
     <ClCompile Include="avi_videoencoder_dshow.cpp" />
     <ClCompile Include="avi_videoencoder_vfw.cpp" />
     <ClCompile Include="bmp_videoencoder.cpp" />
+    <ClCompile Include="consolefonts.cpp" />
     <ClCompile Include="intercept.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mt_proxy_videoencoder.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="avi_videoencoder_dshow.h" />
     <ClInclude Include="avi_videoencoder_vfw.h" />
     <ClInclude Include="bmp_videoencoder.h" />
+    <ClInclude Include="consolefonts.h" />
     <ClInclude Include="intercept.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="mt_proxy_videoencoder.h" />

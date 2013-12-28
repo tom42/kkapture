@@ -92,6 +92,9 @@
     <ClCompile Include="video_console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="consolefonts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio_resample.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="disasm-lib\misc.h">
       <Filter>tdisasm</Filter>
+    </ClInclude>
+    <ClInclude Include="consolefonts.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

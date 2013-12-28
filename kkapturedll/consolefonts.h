@@ -1,5 +1,5 @@
 /* kkapture: intrusive demo video capturing.
- * Console API driver.
+ * Fonts for the console API driver.
  * Copyright (c) 2013 Thomas Mathys.
  *
  * This program is free software; you can redistribute and/or modify it under
@@ -20,20 +20,9 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "stdafx.h"
+#ifndef __CONSOLEFONTS_H__
+#define __CONSOLEFONTS_H__
 
-static BOOL (__stdcall *Real_WriteConsoleOutputA)(HANDLE hConsoleOutput, CONST CHAR_INFO *lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpWriteRegion) = WriteConsoleOutputA;
+extern const unsigned char console_font_vga_rom_8x8[2048];
 
-static BOOL __stdcall Mine_WriteConsoleOutputA(HANDLE hConsoleOutput, CONST CHAR_INFO *lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpWriteRegion)
-{
-    // TODO: capture (but for the time being, only for known resolution, e.g. 80x50)
-    return Real_WriteConsoleOutputA(hConsoleOutput, lpBuffer, dwBufferSize, dwBufferCoord, lpWriteRegion);
-}
-
-void initVideo_Console()
-{
-  if (params.EnableConsoleCapture)
-  {
-      HookFunction(&Real_WriteConsoleOutputA, Mine_WriteConsoleOutputA);
-  }
-}
+#endif
