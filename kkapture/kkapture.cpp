@@ -334,6 +334,13 @@ static INT_PTR CALLBACK MainDialogProc(HWND hWndDlg,UINT uMsg,WPARAM wParam,LPAR
       SetVideoCodecInfo(hWndDlg,codec);
       ICClose(codec);
 
+      CheckDlgButton(hWndDlg,IDC_DUMPCONSOLEBUFFER,Params.DumpConsoleBuffer ? BST_CHECKED : BST_UNCHECKED);
+      EnableDlgItem(hWndDlg,IDC_CONSOLEDUMPSTYLE,Params.DumpConsoleBuffer ? TRUE : FALSE);
+      SendDlgItemMessage(hWndDlg,IDC_CONSOLEDUMPSTYLE,CB_ADDSTRING,0,(LPARAM) "Interleaved codes and attributes");
+      SendDlgItemMessage(hWndDlg,IDC_CONSOLEDUMPSTYLE,CB_ADDSTRING,0,(LPARAM) "Separate codes and attributes");
+      SendDlgItemMessage(hWndDlg,IDC_CONSOLEDUMPSTYLE,CB_ADDSTRING,0,(LPARAM) "Separate codes, bg and fg color");
+      SendDlgItemMessage(hWndDlg,IDC_CONSOLEDUMPSTYLE,CB_SETCURSEL,Params.ConsoleBufferDumpStyle,0);
+
       // gui stuff not read from registry
       CheckDlgButton(hWndDlg,IDC_VCAPTURE,BST_CHECKED);
       CheckDlgButton(hWndDlg,IDC_ACAPTURE,BST_CHECKED);
@@ -420,6 +427,9 @@ static INT_PTR CALLBACK MainDialogProc(HWND hWndDlg,UINT uMsg,WPARAM wParam,LPAR
         if (!Params.ExtraScreenWidth || !Params.ExtraScreenHeight || (Params.ExtraScreenWidth > 32767) || (Params.ExtraScreenHeight > 32767)) {
             Params.ExtraScreenMode = FALSE;
         }
+
+        Params.DumpConsoleBuffer = IsDlgButtonChecked(hWndDlg,IDC_DUMPCONSOLEBUFFER) == BST_CHECKED;
+        Params.ConsoleBufferDumpStyle = (ConsoleBufferDumpStyle)SendDlgItemMessage(hWndDlg,IDC_CONSOLEDUMPSTYLE,CB_GETCURSEL,0,0);
 
         // save settings for next time
         SaveSettingsToRegistry();
@@ -529,6 +539,10 @@ static INT_PTR CALLBACK MainDialogProc(HWND hWndDlg,UINT uMsg,WPARAM wParam,LPAR
         EnableDlgItem(hWndDlg,IDC_EXTRASCREENX,enable);
         EnableDlgItem(hWndDlg,IDC_EXTRASCREENHEIGHT,enable);
       }
+      return TRUE;
+
+    case IDC_DUMPCONSOLEBUFFER:
+        EnableDlgItem(hWndDlg,IDC_CONSOLEDUMPSTYLE,IsDlgButtonChecked(hWndDlg,IDC_DUMPCONSOLEBUFFER) == BST_CHECKED ? TRUE : FALSE);
       return TRUE;
 
     }

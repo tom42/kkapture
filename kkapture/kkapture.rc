@@ -7,20 +7,17 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include <winresrc.h>
-#define IDC_STATIC -1
+#include "afxres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -47,7 +44,7 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -55,39 +52,37 @@ END
 // Neutral (Sys. Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
-#ifdef _WIN32
 LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_MAINWIN DIALOGEX 0, 0, 258, 294
+IDD_MAINWIN DIALOGEX 0, 0, 259, 327
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION ".kkapture 1.02"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "kkapture!",IDOK,149,273,50,14
-    PUSHBUTTON      "Exit",IDCANCEL,201,273,50,14
+    DEFPUSHBUTTON   "kkapture!",IDOK,149,289,50,14
+    PUSHBUTTON      "Exit",IDCANCEL,202,289,50,14
     EDITTEXT        IDC_DEMO,51,7,146,13,ES_AUTOHSCROLL
     LTEXT           "Demo:",IDC_STATIC,9,9,22,8
-    PUSHBUTTON      "Browse...",IDC_BDEMO,201,7,50,13
+    PUSHBUTTON      "Browse...",IDC_BDEMO,202,7,50,13
     EDITTEXT        IDC_ARGUMENTS,51,23,146,13,ES_AUTOHSCROLL
     LTEXT           "Arguments:",IDC_STATIC,9,25,38,8
     EDITTEXT        IDC_TARGET,51,39,146,13,ES_AUTOHSCROLL
     LTEXT           "Target:",IDC_STATIC,9,41,25,8
-    PUSHBUTTON      "Browse...",IDC_BTARGET,201,39,50,13
+    PUSHBUTTON      "Browse...",IDC_BTARGET,202,39,50,13
     LTEXT           "Frame rate:",IDC_STATIC,10,57,39,8
     EDITTEXT        IDC_FRAMERATE,51,55,31,13,ES_AUTOHSCROLL
     LTEXT           "Encoder:",IDC_STATIC,95,57,28,8
-    COMBOBOX        IDC_ENCODER,130,55,121,100,CBS_DROPDOWNLIST | CBS_HASSTRINGS | WS_TABSTOP
-    GROUPBOX        "AVI Encoding Options",IDC_STATIC,7,73,244,26
+    COMBOBOX        IDC_ENCODER,131,55,121,100,CBS_DROPDOWNLIST | CBS_HASSTRINGS | WS_TABSTOP
+    GROUPBOX        "AVI Encoding Options",IDC_STATIC,7,73,245,26
     LTEXT           "Video Codec:",IDC_VIDEOCODEC,14,84,176,8
     PUSHBUTTON      "Pick...",IDC_VCPICK,214,82,30,12
-    GROUPBOX        "Tweaking",IDC_STATIC,7,103,244,89
+    GROUPBOX        "Tweaking",IDC_STATIC,7,103,245,104
     CONTROL         "Capture Video",IDC_VCAPTURE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,114,61,10
     CONTROL         "Skip digital silence at start",IDC_SKIPSILENCE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,114,99,10
     CONTROL         "Capture Audio",IDC_ACAPTURE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,62,10
@@ -98,19 +93,22 @@ BEGIN
     CONTROL         "Separate encoder thread",IDC_ENCODERTHREAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,150,117,10
     CONTROL         "DDraw virtual framebuffer",IDC_VIRTFRAMEBUF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,163,105,10
     CONTROL         "Power down on completion",IDC_POWERDOWN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,163,105,10
-    CONTROL         "Fake additional screen resolution:",IDC_EXTRASCREENMODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,176,124,10
+    CONTROL         "Fake additional screen resolution:",IDC_EXTRASCREENMODE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,176,124,10
     EDITTEXT        IDC_EXTRASCREENWIDTH,138,175,25,13,ES_AUTOHSCROLL
-    LTEXT           "x",IDC_EXTRASCREENX,166,176,6,8
+    LTEXT           "x",IDC_EXTRASCREENX,166,176,8,8
     EDITTEXT        IDC_EXTRASCREENHEIGHT,172,175,25,13,ES_AUTOHSCROLL
-    GROUPBOX        "Auto-skip",IDC_STATIC,7,196,244,72
+    GROUPBOX        "Auto-skip",IDC_STATIC,7,212,245,72
     CONTROL         "Skip frames on frequent timer checks",IDC_AUTOSKIP_TIMER,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,208,150,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,224,150,10
     CONTROL         "Enable automatic frameskip on timeout",IDC_AUTOSKIP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,221,150,10
-    LTEXT           "Initial frame timeout (seconds):",IDC_STATIC,14,235,140,8
-    EDITTEXT        IDC_FIRSTFRAMETIMEOUT,130,233,31,13,ES_AUTOHSCROLL
-    LTEXT           "Other frames timeout (seconds):",IDC_STATIC,14,251,140,8
-    EDITTEXT        IDC_OTHERFRAMETIMEOUT,130,249,31,13,ES_AUTOHSCROLL
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,237,150,10
+    LTEXT           "Initial frame timeout (seconds):",IDC_STATIC,14,251,140,8
+    EDITTEXT        IDC_FIRSTFRAMETIMEOUT,130,249,31,13,ES_AUTOHSCROLL
+    LTEXT           "Other frames timeout (seconds):",IDC_STATIC,14,267,140,8
+    EDITTEXT        IDC_OTHERFRAMETIMEOUT,130,265,31,13,ES_AUTOHSCROLL
+    CONTROL         "Dump console buffer:",IDC_DUMPCONSOLEBUFFER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,191,86,10
+    COMBOBOX        IDC_CONSOLEDUMPSTYLE,108,190,136,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
 
@@ -120,14 +118,14 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_MAINWIN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 251
+        RIGHTMARGIN, 252
         TOPMARGIN, 7
-        BOTTOMMARGIN, 271
+        BOTTOMMARGIN, 304
     END
 END
 #endif    // APSTUDIO_INVOKED

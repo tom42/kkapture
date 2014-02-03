@@ -108,6 +108,70 @@ static void captureTextmodeFrame(const CHAR_INFO *lpBuffer)
   encoder->WriteFrame(captureData);
 }
 
+static void dumpConsoleBuffer(const CHAR_INFO* lpBuffer)
+{
+    const size_t filename_bufsize = 512;
+    const size_t dump_bufsize = 80 * 50 * 2;
+    static int frame = 0;
+
+    // Create filename.
+    char filename[filename_bufsize];
+    _snprintf_s(filename, filename_bufsize, "%05d.console.bin", frame);
+    ++frame;
+
+    // Prepare data dump.    
+    unsigned char dump[80 * 50 * 2];
+    switch (params.ConsoleBufferDumpStyle)
+    {
+    case ConsoleBufferDumpStyle::InterleavedCodesAndAttributes:
+        for (size_t i = 0; i < 80 * 50; ++i)
+        {
+            dump[i * 2] = lpBuffer[i].Char.AsciiChar;
+            dump[i * 2 + 1] = lpBuffer[i].Attributes & 255;
+        }
+        break;
+    case ConsoleBufferDumpStyle::SeparateCodesAndAttributes:
+        for (size_t i = 0; i < 80 * 50; ++i)
+        {
+            dump[i] = lpBuffer[i].Char.AsciiChar;
+            dump[i + 80 * 50] = lpBuffer[i].Attributes & 255;
+        }
+        break;
+    case ConsoleBufferDumpStyle::SeparateCodesBgAndFgColor:
+        // Characters
+        for (size_t i = 0; i < 80 * 50; ++i)
+        {
+            dump[i] = lpBuffer[i].Char.AsciiChar;
+        }
+        // Foreground colors
+        for (size_t i = 0; i < 80 * 50 / 2; ++i)
+        {
+            unsigned char color0 = lpBuffer[i * 2 + 0].Attributes & 15;
+            unsigned char color1 = lpBuffer[i * 2 + 1].Attributes & 15;
+            dump[i + 80 * 50] = color0 | (color1 << 4);
+        }
+        // Background colors
+        for (size_t i = 0; i < 80 * 50 / 2; ++i)
+        {
+            unsigned char color0 = (lpBuffer[i * 2 + 0].Attributes >> 4) & 15;
+            unsigned char color1 = (lpBuffer[i * 2 + 1].Attributes >> 4) & 15;
+            dump[i + 80 * 50 + 80 * 50 / 2] = color0 | (color1 << 4);
+        }
+        break;
+    default:
+        printLog("video/console: dumpConsoleBuffer: unsupported dump style: %d\n", params.ConsoleBufferDumpStyle);
+        break;
+    }
+
+    // Write data dump to file.
+    FILE* f = fopen(filename, "wb");
+    if (f)
+    {
+        fwrite(dump, dump_bufsize, 1, f);
+        fclose(f);
+    }
+}
+
 static BOOL (__stdcall *Real_WriteConsoleOutputA)(HANDLE hConsoleOutput, CONST CHAR_INFO *lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpWriteRegion) = WriteConsoleOutputA;
 
 static BOOL __stdcall Mine_WriteConsoleOutputA(HANDLE hConsoleOutput, CONST CHAR_INFO *lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpWriteRegion)
@@ -119,6 +183,10 @@ static BOOL __stdcall Mine_WriteConsoleOutputA(HANDLE hConsoleOutput, CONST CHAR
     if (params.CaptureVideo)
     {
       captureTextmodeFrame(lpBuffer);
+      if (params.DumpConsoleBuffer)
+      {
+        dumpConsoleBuffer(lpBuffer);
+      }
     }
     nextFrame();
   }

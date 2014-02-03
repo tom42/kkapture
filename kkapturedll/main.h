@@ -47,6 +47,13 @@ enum EncoderType
   AVIEncoderDShow,
 };
 
+enum ConsoleBufferDumpStyle
+{
+    InterleavedCodesAndAttributes,
+    SeparateCodesAndAttributes,
+    SeparateCodesBgAndFgColor,
+};
+
 struct ParameterBlock
 {
   unsigned VersionTag;
@@ -80,6 +87,9 @@ struct ParameterBlock
   BOOL ExtraScreenMode;
   DWORD ExtraScreenWidth;
   DWORD ExtraScreenHeight;
+
+  BOOL DumpConsoleBuffer;
+  ConsoleBufferDumpStyle ConsoleBufferDumpStyle;
 
   DWORD CodecDataSize;
   UCHAR CodecSpecificData[16384];
